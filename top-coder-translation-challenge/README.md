@@ -1,6 +1,6 @@
 # Translation Challenge (Google Translate API)
 
-I was looking for a fun way to practice python and bash before an interview and decided to do some top coder challenges in both Bash and Python.  This challenge wants you to translate a short line of text into another language, by using the Google Translate API.
+I was looking for a fun way to practice python and bash before an interview and decided to do some top coder challenges in both Bash and Python.  This challenge wants you to translate a short line of text into another language, by using the Google Translate API.  Challenge: https://www.topcoder.com/challenges/030bdfc4-37d1-4b71-80a4-cbc6173a7a06
 
 Pretty simple!  Make an http request with this:
 
