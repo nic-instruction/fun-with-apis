@@ -38,18 +38,21 @@ export GOOGLE_APPLICATION_CREDENTIALS=~/key.json
 
 text_to_translate="$@"
 
-# Make a json file with our text to translate and our target language.
 
+# Make a json file with our text to translate and our target language.
 echo '{
-  "q": [''"$@"''],
+  "q": ["'"$@"'"],
   "target": "de"
 }' > request.json
-
-# Use curl to make a post request that will provide an auth token (from the auth we set up) and send the payload 
-# from the json file.  
-
-curl -X POST \
+# Use curl to make a post request that will provide an auth token (from the auth we set up) and send the payload
+# from the json file.
+response=$(curl -X POST \
 -H "Authorization: Bearer "$(gcloud auth application-default print-access-token) \
 -H "Content-Type: application/json; charset=utf-8" \
 -d @request.json \
-https://translation.googleapis.com/language/translate/v2
+https://translation.googleapis.com/language/translate/v2)
+
+
+translated=$(echo $response | grep "translatedText" | awk -F ":" '{print $4}' | awk -F "," '{print $1}')
+
+echo -e "\nYour phrase: $@\n\nYour phrase in German: $translated \n"
